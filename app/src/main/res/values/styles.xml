@@ -2,10 +2,36 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/primary_light</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+    <style name="Text" parent="AppTheme">
+        <item name="android:paddingLeft">@dimen/space_M</item>
+        <item name="android:paddingRight">@dimen/space_M</item>
+    </style>
+
+    <style name="Text.M">
+        <item name="android:textSize">@dimen/text_size_M</item>
+        <item name="android:paddingTop">@dimen/space_M</item>
+        <item name="android:paddingBottom">@dimen/space_M</item>
+    </style>
+
+    <style name="Text.M.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.L">
+        <item name="android:textSize">@dimen/text_size_L</item>
+        <item name="android:paddingTop">@dimen/space_L</item>
+        <item name="android:paddingBottom">@dimen/space_L</item>
+    </style>
+
+    <style name="Text.L.Bold">
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

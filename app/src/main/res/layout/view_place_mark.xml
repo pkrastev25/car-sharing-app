@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/place_mark_name"
+        style="@style/Text.L.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="HH-GO8522"/>
+
+    <TextView
+        android:id="@+id/place_mark_address"
+        style="@style/Text.L"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_name"
+        tools:text="Lesserstraße 170, 22049 Hamburg"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/place_mark_half_width_guide_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <TextView
+        android:id="@+id/place_mark_engine_type_label"
+        style="@style/Text.M.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="@string/place_mark_engine_type"
+        app:layout_constraintEnd_toStartOf="@id/place_mark_half_width_guide_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_address"
+        tools:text="@string/place_mark_engine_type"/>
+
+    <TextView
+        android:id="@+id/place_mark_engine_type_value"
+        style="@style/Text.M"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/place_mark_half_width_guide_line"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_address"/>
+
+    <TextView
+        android:id="@+id/place_mark_fuel_label"
+        style="@style/Text.M.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="@string/place_mark_fuel"
+        app:layout_constraintEnd_toStartOf="@id/place_mark_half_width_guide_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_engine_type_label"
+        tools:text="@string/place_mark_fuel"/>
+
+    <TextView
+        android:id="@+id/place_mark_fuel_label_value"
+        style="@style/Text.M"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/place_mark_half_width_guide_line"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_engine_type_value"/>
+
+    <TextView
+        android:id="@+id/place_mark_exterior_label"
+        style="@style/Text.M.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="@string/place_mark_exterior"
+        app:layout_constraintEnd_toStartOf="@id/place_mark_half_width_guide_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_fuel_label"
+        tools:text="@string/place_mark_exterior"/>
+
+    <TextView
+        android:id="@+id/place_mark_exterior_label_value"
+        style="@style/Text.M"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/place_mark_half_width_guide_line"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_fuel_label_value"/>
+
+    <TextView
+        android:id="@+id/place_mark_interior_label"
+        style="@style/Text.M.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="@string/place_mark_interior"
+        app:layout_constraintEnd_toStartOf="@id/place_mark_half_width_guide_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_exterior_label"
+        tools:text="@string/place_mark_interior"/>
+
+    <TextView
+        android:id="@+id/place_mark_interior_label_value"
+        style="@style/Text.M"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/place_mark_half_width_guide_line"
+        app:layout_constraintTop_toBottomOf="@id/place_mark_exterior_label_value"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/space_M"
+        android:layout_marginRight="@dimen/space_M"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

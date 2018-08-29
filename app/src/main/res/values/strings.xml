@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Car sharing</string>
+
+    <string name="loading_general">Loading…</string>
+
+    <string name="error_general">An error has occurred! Try again.</string>
+
+    <string name="place_mark_engine_type">Engine type</string>
+    <string name="place_mark_fuel">Fuel</string>
+    <string name="place_mark_exterior">Exterior</string>
+    <string name="place_mark_interior">Interior</string>
 </resources>
