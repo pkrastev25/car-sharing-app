@@ -10,18 +10,16 @@ import com.petar.car.sharing.utils.RestClientUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import io.realm.Realm
 
 class PlaceMarksViewModel : ViewModel() {
 
-    private val placeMarksLiveData: MutableLiveData<AppStateModel> = MutableLiveData()
+    private val placeMarksLiveData = MutableLiveData<AppStateModel>()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCleared() {
         super.onCleared()
 
         compositeDisposable.dispose()
-        Realm.getDefaultInstance().close()
     }
 
     fun getPlaceMarksLiveData(): LiveData<AppStateModel> {

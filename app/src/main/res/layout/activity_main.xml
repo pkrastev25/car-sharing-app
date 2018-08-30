@@ -6,13 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.petar.car.sharing.ui.activities.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/view_data"
+    <FrameLayout
+        android:id="@+id/content_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-    <include layout="@layout/view_loading"/>
-
-    <include layout="@layout/view_error"/>
 
 </android.support.constraint.ConstraintLayout>

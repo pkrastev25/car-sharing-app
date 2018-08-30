@@ -3,10 +3,17 @@
 
     <string name="loading_general">Loading…</string>
 
-    <string name="error_general">An error has occurred! Try again.</string>
+    <string name="error_general">An error has occurred!</string>
 
     <string name="place_mark_engine_type">Engine type</string>
     <string name="place_mark_fuel">Fuel</string>
     <string name="place_mark_exterior">Exterior</string>
     <string name="place_mark_interior">Interior</string>
+
+    <string name="button_show_map">Show map</string>
+    <string name="button_show_list">Show list</string>
+    <string name="button_retry">Retry</string>
+
+    <string name="hint_permissions">The app cannot work without granting the permissions</string>
+    <string name="hint_user_location">Enable your GPS provider to get a better accuracy on your current location</string>
 </resources>

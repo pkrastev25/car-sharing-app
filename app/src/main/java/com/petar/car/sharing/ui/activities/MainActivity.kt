@@ -1,66 +1,87 @@
 package com.petar.car.sharing.ui.activities
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.petar.car.sharing.R
-import com.petar.car.sharing.models.AppStateModel
-import com.petar.car.sharing.models.PlaceMarkModel
-import com.petar.car.sharing.ui.adapters.PlaceMarkAdapter
-import com.petar.car.sharing.viewmodels.PlaceMarksViewModel
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.view_error.*
-import kotlinx.android.synthetic.main.view_loading.*
+import com.petar.car.sharing.interfaces.INavigationEvents
+import com.petar.car.sharing.ui.fragments.PlaceMarkListFragment
+import com.petar.car.sharing.utils.FragmentStackUtil
+import com.petar.car.sharing.utils.PermissionsUtil
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var placeMarksViewModel: PlaceMarksViewModel
-    private val placeMarkAdapter = PlaceMarkAdapter()
+class MainActivity : AppCompatActivity(), INavigationEvents {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        view_data.layoutManager = LinearLayoutManager(this)
-        view_data.adapter = placeMarkAdapter
+        if (PermissionsUtil.areAllPermissionsGranted(this)) {
+            showStartFragment()
+        } else {
+            requestPermissions()
+        }
+    }
 
-        placeMarksViewModel = ViewModelProviders.of(this).get(PlaceMarksViewModel::class.java)
-        placeMarksViewModel.getPlaceMarksLiveData().observe(this, Observer<AppStateModel> {
-            when (it) {
-                is AppStateModel.LoadingState -> showLoadingView()
-                is AppStateModel.DataState<*> -> {
-                    placeMarkAdapter.setItems(it.data as List<PlaceMarkModel>)
-                    showDataView()
+    override fun onBackPressed() {
+        FragmentStackUtil.navigateBack(supportFragmentManager)
+
+        if (FragmentStackUtil.isStackEmpty()) {
+            finish()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode) {
+            PERMISSIONS_REQUEST_CODE -> {
+                val areAllPermissionsGranted = grantResults.all {
+                    it == PackageManager.PERMISSION_GRANTED
                 }
-                is AppStateModel.ErrorState -> showErrorView()
+
+                if (areAllPermissionsGranted) {
+                    showStartFragment()
+                } else {
+                    Toast.makeText(this, R.string.hint_permissions, Toast.LENGTH_SHORT).show()
+                    finish()
+                }
             }
-        })
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        placeMarksViewModel.getCachedPlaceMarks()
+    override fun replaceTopFragmentOnStack(fragment: Fragment, fragmentNavId: String) {
+        FragmentStackUtil.replaceTopFragmentOnStack(
+                supportFragmentManager,
+                fragment,
+                fragmentNavId
+        )
     }
 
-    private fun showLoadingView() {
-        view_loading.visibility = View.VISIBLE
-        view_data.visibility = View.INVISIBLE
-        view_error.visibility = View.INVISIBLE
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION),
+                PERMISSIONS_REQUEST_CODE
+        )
     }
 
-    private fun showDataView() {
-        view_loading.visibility = View.INVISIBLE
-        view_data.visibility = View.VISIBLE
-        view_error.visibility = View.INVISIBLE
+    private fun showStartFragment() {
+        if (FragmentStackUtil.isStackEmpty()) {
+            FragmentStackUtil.navigateToFragmentAndAddToStack(
+                    supportFragmentManager,
+                    PlaceMarkListFragment.newInstance(),
+                    PlaceMarkListFragment.NAV_ID
+            )
+        } else {
+            FragmentStackUtil.showTopFragmentOnStack(supportFragmentManager)
+        }
     }
 
-    private fun showErrorView() {
-        view_loading.visibility = View.INVISIBLE
-        view_data.visibility = View.INVISIBLE
-        view_error.visibility = View.VISIBLE
+    companion object {
+        private const val PERMISSIONS_REQUEST_CODE = 0
     }
 }

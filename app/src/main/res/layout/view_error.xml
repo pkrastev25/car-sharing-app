@@ -21,4 +21,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/error_general"/>
 
+    <TextView
+        android:id="@+id/retry_button"
+        style="@style/Text.L.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_dark"
+        android:gravity="center"
+        android:text="@string/button_retry"
+        android:textColor="@color/primary_dark_contrast"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="@string/button_retry"/>
+
 </android.support.constraint.ConstraintLayout>
